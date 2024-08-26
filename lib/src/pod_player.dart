@@ -58,7 +58,7 @@ class PodVideoPlayer extends StatefulWidget {
 
   PodVideoPlayer({
     required this.controller,
-    super.key,
+    required this.url, super.key,
     this.frameAspectRatio = 16 / 9,
     this.videoAspectRatio = 16 / 9,
     this.alwaysShowProgressBar = true,
@@ -72,7 +72,7 @@ class PodVideoPlayer extends StatefulWidget {
     this.backgroundColor,
     this.videoThumbnail,
     this.onToggleFullScreen,
-    this.onLoading, this.url,
+    this.onLoading,
   }) {
     addToUiController();
   }
