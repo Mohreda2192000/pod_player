@@ -144,7 +144,7 @@ class VideoViewerState extends State<VideoViewer> {
                   ],
                 ),
               );
-            }),
+            }, url: '',),
       ),
     );
   }

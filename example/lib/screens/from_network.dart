@@ -51,7 +51,7 @@ class _PlayVideoFromAssetState extends State<PlayVideoFromNetwork> {
                   playingBarColor: Colors.blue,
                   circleHandlerColor: Colors.blue,
                   backgroundColor: Colors.blueGrey,
-                ),
+                ), url: '',
               ),
               const SizedBox(height: 40),
               _loadVideoFromUrl()

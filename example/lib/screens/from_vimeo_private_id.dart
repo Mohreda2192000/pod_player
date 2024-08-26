@@ -38,7 +38,7 @@ class _PlayVideoFromVimeoPrivateIdState
           child: ListView(
             shrinkWrap: true,
             children: [
-              PodVideoPlayer(controller: controller),
+              PodVideoPlayer(controller: controller, url: '',),
               const SizedBox(height: 40),
               _loadVideoFromUrl()
             ],

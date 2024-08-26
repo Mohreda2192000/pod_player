@@ -58,7 +58,7 @@ class _PlayVideoFromAssetState extends State<PlayVideoFromNetworkQualityUrls> {
               playingBarColor: Colors.blue,
               circleHandlerColor: Colors.blue,
               backgroundColor: Colors.blueGrey,
-            ),
+            ), url: '',
           ),
         ),
       ),

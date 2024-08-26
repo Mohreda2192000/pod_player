@@ -47,7 +47,7 @@ class _PlayVideoFromAssetState extends State<PlayVideoFromAsset> {
             optionEnabled: "YES",
             optionDisabled: "NO",
             quality: "QUALITY",
-          ),
+          ), url: '',
         ),
       ),
     );

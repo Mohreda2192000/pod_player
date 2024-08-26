@@ -151,7 +151,7 @@ class _ListOfVideosViewerState extends State<ListOfVideosViewer> {
         controllers[index].initialise();
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 40),
-          child: PodVideoPlayer(controller: controllers[index]),
+          child: PodVideoPlayer(controller: controllers[index],url: ''),
         );
       },
     );
