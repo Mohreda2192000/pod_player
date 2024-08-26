@@ -130,14 +130,13 @@ class _VideoQualitySelectorMob extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: podCtr.vimeoOrVideoUrls
+        children: [1080, 720, 360,240,144]
             .map(
               (e) => ListTile(
-                title: Text('${e.quality}p'),
+                title: Text('${e}p'),
                 onTap: () {
                   onTap != null ? onTap!() : Navigator.of(context).pop();
-
-                  podCtr.changeVideoQuality(e.quality);
+                  podCtr.changeVideoQuality(e);
                 },
               ),
             )
