@@ -2,9 +2,10 @@ part of 'package:pod_player/src/pod_player.dart';
 
 class _WebSettingsDropdown extends StatefulWidget {
   final String tag;
+  final String url;
 
   const _WebSettingsDropdown({
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -67,7 +68,7 @@ class _WebSettingsDropdownState extends State<_WebSettingsDropdown> {
               );
               switch (settingsMenu) {
                 case 'OUALITY':
-                  await _onVimeoQualitySelect(details, podCtr);
+                  await _onVimeoQualitySelect(details, podCtr,widget.url);
                   break;
                 case 'SPEED':
                   await _onPlaybackSpeedSelect(details, podCtr);
@@ -119,6 +120,7 @@ class _WebSettingsDropdownState extends State<_WebSettingsDropdown> {
   Future<void> _onVimeoQualitySelect(
     TapDownDetails details,
     PodGetXVideoController podCtr,
+      String url,
   ) async {
     await Future<void>.delayed(
       const Duration(milliseconds: 400),
@@ -133,7 +135,7 @@ class _WebSettingsDropdownState extends State<_WebSettingsDropdown> {
               ),
               onTap: () {
                 podCtr.changeVideoQuality(
-                  e.quality,
+                  e.quality,url
                 );
               },
             ),

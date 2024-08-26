@@ -2,8 +2,9 @@ part of 'package:pod_player/src/pod_player.dart';
 
 class _WebOverlay extends StatelessWidget {
   final String tag;
+  final String url;
   const _WebOverlay({
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -16,7 +17,7 @@ class _WebOverlay extends StatelessWidget {
           child: _VideoGestureDetector(
             tag: tag,
             onTap: podCtr.togglePlayPauseVideo,
-            onDoubleTap: () => podCtr.toggleFullScreenOnWeb(context, tag),
+            onDoubleTap: () => podCtr.toggleFullScreenOnWeb(context, tag,url),
             child: const ColoredBox(
               color: overlayColor,
               child: SizedBox.expand(),
@@ -27,6 +28,7 @@ class _WebOverlay extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: _WebOverlayBottomControlles(
             tag: tag,
+            url:url
           ),
         ),
         Positioned.fill(
@@ -69,9 +71,10 @@ class _WebOverlay extends StatelessWidget {
 
 class _WebOverlayBottomControlles extends StatelessWidget {
   final String tag;
+  final String url;
 
   const _WebOverlayBottomControlles({
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -157,7 +160,7 @@ class _WebOverlayBottomControlles extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Row(
                       children: [
-                        _WebSettingsDropdown(tag: tag),
+                        _WebSettingsDropdown(tag: tag,url:url),
                         MaterialIconButton(
                           toolTipMesg: podCtr.isFullScreen
                               ? podCtr.podPlayerLabels.exitFullScreen ??
@@ -200,10 +203,10 @@ class _WebOverlayBottomControlles extends StatelessWidget {
       } else {
         if (kIsWeb) {
           uni_html.document.documentElement?.requestFullscreen();
-          podCtr.enableFullScreen(tag);
+          podCtr.enableFullScreen(tag,url);
           return;
         } else {
-          podCtr.enableFullScreen(tag);
+          podCtr.enableFullScreen(tag,url);
         }
       }
     } else {

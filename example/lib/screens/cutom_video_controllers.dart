@@ -182,7 +182,7 @@ class _CustomVideoControllsState extends State<CustomVideoControlls> {
                     sizeH20,
                     _iconButton('Enable full screen', Icons.fullscreen,
                         onPressed: () {
-                      controller.enableFullScreen();
+                      controller.enableFullScreen('https://www.youtube.com/watch?v=q4QTSu9KHKI');
                     }),
                     sizeH20,
                     _iconButton(

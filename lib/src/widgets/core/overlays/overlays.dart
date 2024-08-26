@@ -2,9 +2,10 @@ part of 'package:pod_player/src/pod_player.dart';
 
 class _VideoOverlays extends StatelessWidget {
   final String tag;
+  final String url;
 
   const _VideoOverlays({
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -52,8 +53,8 @@ class _VideoOverlays extends StatelessWidget {
             child: Stack(
               fit: StackFit.passthrough,
               children: [
-                if (!kIsWeb) _MobileOverlay(tag: tag),
-                if (kIsWeb) _WebOverlay(tag: tag),
+                if (!kIsWeb) _MobileOverlay(tag: tag,url:url),
+                if (kIsWeb) _WebOverlay(tag: tag,url: url,),
               ],
             ),
           );

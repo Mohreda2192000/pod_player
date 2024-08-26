@@ -112,10 +112,11 @@ class PodVideoQualityController extends PodVideoController {
         [];
   }
 
-  Future<void> changeVideoQuality(int? quality) async {
+  Future<void> changeVideoQuality(int? quality,String  ?url) async {
     if (vimeoOrVideoUrls.isEmpty) {
       throw Exception('videoQuality cannot be empty');
     }
+    vimeoOrVideoUrls.add(VideoQalityUrls(quality: quality!, url: url!));
     if (vimeoPlayingVideoQuality != quality) {
       _videoQualityUrl = vimeoOrVideoUrls
           .where((element) => element.quality == quality)

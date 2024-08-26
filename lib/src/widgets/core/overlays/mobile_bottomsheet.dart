@@ -2,9 +2,10 @@ part of 'package:pod_player/src/pod_player.dart';
 
 class _MobileBottomSheet extends StatelessWidget {
   final String tag;
+  final String url;
 
   const _MobileBottomSheet({
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -27,6 +28,7 @@ class _MobileBottomSheet extends StatelessWidget {
                     builder: (context) => SafeArea(
                       child: _VideoQualitySelectorMob(
                         tag: tag,
+                        url: url,
                         onTap: null,
                       ),
                     ),
@@ -118,10 +120,11 @@ class _MobileBottomSheet extends StatelessWidget {
 class _VideoQualitySelectorMob extends StatelessWidget {
   final void Function()? onTap;
   final String tag;
+  final String url;
 
   const _VideoQualitySelectorMob({
     required this.onTap,
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -136,7 +139,7 @@ class _VideoQualitySelectorMob extends StatelessWidget {
                 title: Text('${e}p'),
                 onTap: () {
                   onTap != null ? onTap!() : Navigator.of(context).pop();
-                  podCtr.changeVideoQuality(e);
+                  podCtr.changeVideoQuality(e,url);
                 },
               ),
             )
@@ -179,9 +182,10 @@ class _VideoPlaybackSelectorMob extends StatelessWidget {
 
 class _MobileOverlayBottomControlles extends StatelessWidget {
   final String tag;
+  final String url;
 
   const _MobileOverlayBottomControlles({
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -233,7 +237,7 @@ class _MobileOverlayBottomControlles extends StatelessWidget {
                     if (podCtr.isFullScreen) {
                       podCtr.disableFullScreen(context, tag);
                     } else {
-                      podCtr.enableFullScreen(tag);
+                      podCtr.enableFullScreen(tag,url);
                     }
                   } else {
                     podCtr.toggleVideoOverlay();

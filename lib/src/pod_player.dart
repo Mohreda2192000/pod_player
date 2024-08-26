@@ -43,6 +43,7 @@ class PodVideoPlayer extends StatefulWidget {
   final Widget Function()? onVideoError;
   final Widget? videoTitle;
   final Color? backgroundColor;
+  final String? url;
   final DecorationImage? videoThumbnail;
 
   /// Optional callback, fired when full screen mode toggles.
@@ -71,7 +72,7 @@ class PodVideoPlayer extends StatefulWidget {
     this.backgroundColor,
     this.videoThumbnail,
     this.onToggleFullScreen,
-    this.onLoading,
+    this.onLoading, this.url,
   }) {
     addToUiController();
   }
@@ -199,7 +200,7 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
                 return AspectRatio(
                   aspectRatio: _frameAspectRatio,
                   child: podCtr.videoCtr?.value.isInitialized ?? false
-                      ? _buildPlayer()
+                      ? _buildPlayer(widget.url!)
                       : Center(child: circularProgressIndicator),
                 );
               },
@@ -242,7 +243,7 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
     );
   }
 
-  Widget _buildPlayer() {
+  Widget _buildPlayer(String url) {
     final videoAspectRatio = widget.matchVideoAspectRatioToFrame
         ? _podCtr.videoCtr?.value.aspectRatio ?? widget.videoAspectRatio
         : widget.videoAspectRatio;
@@ -254,6 +255,7 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
           if (podCtr.isFullScreen) return _thumbnailAndLoadingWidget();
           return _PodCoreVideoPlayer(
             videoPlayerCtr: podCtr.videoCtr!,
+            url: url,
             videoAspectRatio: videoAspectRatio,
             tag: widget.controller.getTag,
           );
@@ -262,6 +264,7 @@ class _PodVideoPlayerState extends State<PodVideoPlayer>
     } else {
       return _PodCoreVideoPlayer(
         videoPlayerCtr: _podCtr.videoCtr!,
+        url: url,
         videoAspectRatio: videoAspectRatio,
         tag: widget.controller.getTag,
       );

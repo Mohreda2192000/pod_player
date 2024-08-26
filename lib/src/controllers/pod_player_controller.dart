@@ -227,9 +227,9 @@ class PodPlayerController {
   ///
   /// If onToggleFullScreen is set, you must handle the device
   /// orientation by yourself.
-  void enableFullScreen() {
+  void enableFullScreen(String url) {
     uni_html.document.documentElement?.requestFullscreen();
-    _ctr.enableFullScreen(getTag);
+    _ctr.enableFullScreen(getTag,url);
   }
 
   /// Disables fullscreen mode.

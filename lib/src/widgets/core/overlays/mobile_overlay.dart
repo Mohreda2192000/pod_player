@@ -2,9 +2,10 @@ part of 'package:pod_player/src/pod_player.dart';
 
 class _MobileOverlay extends StatelessWidget {
   final String tag;
+  final String url;
 
   const _MobileOverlay({
-    required this.tag,
+    required this.tag, required this.url,
   });
 
   @override
@@ -66,7 +67,7 @@ class _MobileOverlay extends StatelessWidget {
                 color: itemColor,
                 onPressed: () {
                   if (podCtr.isOverlayVisible) {
-                    _bottomSheet(context);
+                    _bottomSheet(context,url);
                   } else {
                     podCtr.toggleVideoOverlay();
                   }
@@ -80,7 +81,7 @@ class _MobileOverlay extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.bottomLeft,
-          child: _MobileOverlayBottomControlles(tag: tag),
+          child: _MobileOverlayBottomControlles(tag: tag,url: url),
         ),
       ],
     );
@@ -104,10 +105,10 @@ class _MobileOverlay extends StatelessWidget {
     return false;
   }
 
-  void _bottomSheet(BuildContext context) {
+  void _bottomSheet(BuildContext context,String url) {
     showModalBottomSheet<void>(
       context: context,
-      builder: (context) => SafeArea(child: _MobileBottomSheet(tag: tag)),
+      builder: (context) => SafeArea(child: _MobileBottomSheet(tag: tag, url: url,)),
     );
   }
 }
