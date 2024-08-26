@@ -1,6 +1,6 @@
 part of 'pod_getx_video_controller.dart';
 
-class _PodVideoQualityController extends _PodVideoController {
+class PodVideoQualityController extends PodVideoController {
   ///
   int? vimeoPlayingVideoQuality;
 

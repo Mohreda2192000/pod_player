@@ -1,6 +1,6 @@
 part of 'pod_getx_video_controller.dart';
 
-class _PodVideoController extends _PodUiController {
+class PodVideoController extends _PodUiController {
   Timer? showOverlayTimer;
   Timer? showOverlayTimer1;
 

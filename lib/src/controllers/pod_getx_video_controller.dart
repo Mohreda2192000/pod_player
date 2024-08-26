@@ -18,7 +18,7 @@ part 'pod_ui_controller.dart';
 part 'pod_video_controller.dart';
 part 'pod_video_quality_controller.dart';
 
-class PodGetXVideoController extends _PodGesturesController {
+class PodGetXVideoController extends PodGesturesController {
   ///main videoplayer controller
   VideoPlayerController? get videoCtr => _videoCtr;
 
