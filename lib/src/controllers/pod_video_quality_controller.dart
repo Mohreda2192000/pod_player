@@ -161,26 +161,23 @@ class PodVideoQualityController extends PodVideoController {
       print('Changing video quality to $quality with URL: $_videoQualityUrl');
 
       if (vimeoPlayingVideoQuality != quality) {
-        // Remove the current listener before changing the video source
+        // Pause and load states before reinitializing the controller
         _videoCtr?.removeListener(videoListner);
         podVideoStateChanger(PodVideoState.paused);
         podVideoStateChanger(PodVideoState.loading);
 
-        // Update the playing video URL
+        // Update the playing video URL and reinitialize the controller
         playingVideoUrl = _videoQualityUrl;
-
-        // Reinitialize the video controller with the new URL
         _videoCtr = VideoPlayerController.networkUrl(Uri.parse(_videoQualityUrl));
+
         await _videoCtr?.initialize();
 
-        // Set the video duration and listener
+        // Update the video duration and reattach the listener
         _videoDuration = _videoCtr?.value.duration ?? Duration.zero;
         _videoCtr?.addListener(videoListner);
 
-        // Seek to the previous position
+        // Resume from the previous position and apply playback speed
         await _videoCtr?.seekTo(_videoPosition);
-
-        // Apply playback speed settings
         setVideoPlayBack(_currentPaybackSpeed);
 
         // Change state to playing
@@ -189,9 +186,12 @@ class PodVideoQualityController extends PodVideoController {
         // Invoke any external quality change callback
         onVimeoVideoQualityChanged?.call();
 
-        // Update the UI
+        // Ensure the UI updates accordingly
         update();
         update(['update-all']);
+
+        // Finally, start playback again
+        await _videoCtr?.play();
       }
     } catch (e) {
       print('Error changing video quality: $e');
